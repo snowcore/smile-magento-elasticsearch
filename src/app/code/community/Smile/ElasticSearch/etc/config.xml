@@ -79,14 +79,14 @@
                     </smile_elasticsearch>
                 </observers>
             </catalog_entity_attribute_save_after>
-            <catalog_category_save_commit_after>
+            <end_process_event_catalog_category_save>
                 <observers>
                     <smile_elasticsearch>
                         <class>smile_elasticsearch/observer</class>
                         <method>reindexCategoryAfterSave</method>
                     </smile_elasticsearch>
                 </observers>
-            </catalog_category_save_commit_after>
+            </end_process_event_catalog_category_save>
             <catalog_category_delete_commit_after>
                 <observers>
                     <smile_elasticsearch>

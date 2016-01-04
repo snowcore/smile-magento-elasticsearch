@@ -110,14 +110,13 @@ class Smile_ElasticSearch_Model_Observer
     public function reindexCategoryAfterSave(Varien_Event_Observer $observer)
     {
         $helper = Mage::helper('smile_elasticsearch');
-        $category = $observer->getEvent()->getCategory();
+        $category = Mage::registry('category');
         if ($helper->isEnterpriseSupportEnabled() == false) {
             $productIds = $category->getProductCollection()->getAllIds();
             $this->_getIndexer()->resetSearchResults();
             $currentIndex = Mage::helper('catalogsearch')->getEngine()->getCurrentIndex();
             $currentIndex->getMapping('product')->rebuildIndex(null, $productIds);
         } else {
-            $category = $observer->getEvent()->getCategory();
             $productIds = $category->getAffectedProductIds();
             if (empty($productIds)) {
                 return $this;
